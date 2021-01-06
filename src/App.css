@@ -1,38 +1,124 @@
+* {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
+  width: 100%;
+  padding: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.quiz-box {
+  height: 350px;
+  width: 600px;
+
+  background-color: white;
+  border-radius: 2rem;
+
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+}
+.quiz-box button {
+  margin: 10px 0;
+}
+.question-section {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.question-section .question-text {
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.answer-section {
+  height: 50%;
+  padding: 0 15px;
+  padding-top: 40px;
+}
+
+button {
+  width: 80%;
+  height: 40px;
+  font-size: 16px;
+  color: #000000;
+  background-color: #fefeff;
+  border-radius: 20px;
+  padding: 5px;
+  border: 1px solid #000000;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in;
+}
+
+button:hover {
+  background-color: #d3d3d3;
+}
+
+.question-box {
+  height: 350px;
+  background-color: white;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.list-question-box {
+  padding: 20px 20px;
+  margin: 0;
+  height: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.list-question-item {
+  margin: 0 11px;
+  margin-bottom: 10px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 45px;
+  width: 45px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+
+  font-size: 20px;
+  font-weight: 400;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.list-question-item:hover {
+  background-color: #d3d3d3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list-question-item.list-question-item--current {
+  background-color: #d3d3d3;
+}
+
+.timer-wrapper {
+  background: #dedede;
+  height: 15px;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.timer-countdown-bar {
+  background: #ffad55;
+  height: 15px;
+  border-radius: 20px;
+  transition: width 1s linear;
+}
+
+.quiz-btn-box {
+  display: flex;
 }
