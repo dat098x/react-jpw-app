@@ -29,9 +29,10 @@ function QuizBox(props) {
           <div className="answer-section">
             <div className="grid">
               <div className="row">
-                {currentQuestion.answerOptions.map((answerOption) => (
+                {currentQuestion.answerOptions.map((answerOption, index) => (
                   <div className="l-6 m-6 c-12">
                     <ButtonAnswer
+                      key={`answerOption-${index}`}
                       answerOption={answerOption}
                       isCorrectAnswer={answerOption === currentQuestion.answer}
                       isSelectedAnswer={

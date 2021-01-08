@@ -15,17 +15,19 @@ function ListQuestionBox(props) {
     handleCompletedQuiz,
     handleResetQuiz,
   } = props;
+  const TIMER_START_VALUE = 30;
   return (
     <div className="list-question-box">
       <div className="timer-wrapper">
         <div
           className="timer-countdown-bar"
-          style={{ width: (timer / 30) * 100 + "%" }}
+          style={{ width: (timer / TIMER_START_VALUE) * 100 + "%" }}
         ></div>
       </div>
       <ul className="list-question">
         {questions.map((question, index) => (
           <ItemQuestion
+            key={index}
             revealAnswers={revealAnswers}
             isSelectedAnswer={question.answer === historyAnswer[index]}
             currentQuestionIndex={currentQuestionIndex}

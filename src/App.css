@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-.App {
+.quiz-page {
   text-align: center;
   width: 100%;
   padding: 0;
@@ -82,13 +82,13 @@ button:hover {
 }
 
 .list-question-item {
-  margin: 0 11px;
+  margin: 0 9px;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45px;
-  width: 45px;
+  height: 30px;
+  width: 30px;
   border: 2px solid #000000;
   border-radius: 50%;
 
