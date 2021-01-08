@@ -64,7 +64,7 @@ function QuizPage(props) {
 
     fetchProductList();
   }, []);
-  //questions = questionsList;
+
   const TIMER_START_VALUE = 30;
   const [timer, setTimer] = useState(TIMER_START_VALUE);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -134,9 +134,9 @@ function QuizPage(props) {
           <div className="col l-3 m-3">
             <ListQuestionBox
               timer={timer}
-              revealAnswers={revealAnswers}
-              historyAnswer={historyAnswer}
               questions={questions}
+              historyAnswer={historyAnswer}
+              revealAnswers={revealAnswers}
               currentQuestionIndex={currentQuestionIndex}
               handleQuestionItemClick={handleQuestionItemClick}
               handleCompletedQuiz={handleCompletedQuiz}
@@ -145,13 +145,13 @@ function QuizPage(props) {
           </div>
           <div className="col l=6 m-6">
             <QuizBox
-              showScore={showScore}
               score={score}
+              showScore={showScore}
               questions={questions}
-              currentQuestion={currentQuestion}
-              currentQuestionIndex={currentQuestionIndex}
               historyAnswer={historyAnswer}
               revealAnswers={revealAnswers}
+              currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
               handleAnswerOptionClick={handleAnswerOptionClick}
             />
           </div>
