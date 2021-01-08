@@ -60,7 +60,7 @@ button:hover {
   background-color: #d3d3d3;
 }
 
-.question-box {
+.list-question-box {
   height: 350px;
   background-color: white;
   box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
@@ -70,7 +70,7 @@ button:hover {
   flex-direction: column;
 }
 
-.list-question-box {
+.list-question {
   padding: 20px 20px;
   margin: 0;
   height: 70%;

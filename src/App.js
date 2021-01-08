@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import ButtonAnswer from "./components/ButtonAnswer";
 import ItemQuestion from "./components/ItemQuestion";
+import ListQuestionBox from "./components/ListQuestionBox";
 import QuizBox from "./components/QuizBox";
 import "./publics/grid.css";
 
@@ -43,6 +44,7 @@ function App() {
       answer: "Florida",
     },
   ];
+
   const TIMER_START_VALUE = 30;
   const [timer, setTimer] = useState(TIMER_START_VALUE);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -50,7 +52,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState();
   const [revealAnswers, setRevealAnswers] = useState(false);
-  const [historyAnswer] = useState([]);
+  const [historyAnswer, setHistoryAnswer] = useState([]);
 
   const currentQuestion = questions[currentQuestionIndex];
   const updateTimer = () => {
@@ -95,6 +97,7 @@ function App() {
     setCurrentQuestionIndex(0);
     setShowScore(false);
     setTimer(TIMER_START_VALUE);
+    setHistoryAnswer([]);
   };
   const handleCompletedQuiz = () => {
     setShowScore(true);
@@ -106,14 +109,24 @@ function App() {
     <div className="App">
       <div className="row">
         <div className="col l-4 m-4">
-          <div className="question-box">
+          <ListQuestionBox
+            timer={timer}
+            revealAnswers={revealAnswers}
+            historyAnswer={historyAnswer}
+            questions={questions}
+            currentQuestionIndex={currentQuestionIndex}
+            handleQuestionItemClick={handleAnswerOptionClick}
+            handleCompletedQuiz={handleCompletedQuiz}
+            handleResetQuiz={handleResetQuiz}
+          />
+          {/* <div className="list-question-box">
             <div className="timer-wrapper">
               <div
                 className="timer-countdown-bar"
                 style={{ width: (timer / TIMER_START_VALUE) * 100 + "%" }}
               ></div>
             </div>
-            <ul className="list-question-box">
+            <ul className="list-question">
               {questions.map((question, index) => (
                 <ItemQuestion
                   revealAnswers={revealAnswers}
@@ -135,7 +148,7 @@ function App() {
                 Lam lai
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="col l=8 m-8">
           <QuizBox
@@ -148,43 +161,6 @@ function App() {
             revealAnswers={revealAnswers}
             handleAnswerOptionClick={handleAnswerOptionClick}
           />
-          {/* <div className="quiz-box">
-            {showScore ? (
-              <div className="score-section">
-                You scored {score} out of {questions.length}
-              </div>
-            ) : (
-              <>
-                <div className="question-section">
-                  <div className="question-text">
-                    {currentQuestion.questionText}
-                  </div>
-                </div>
-                <div className="answer-section">
-                  <div className="grid">
-                    <div className="row">
-                      {currentQuestion.answerOptions.map((answerOption) => (
-                        <div className="l-6 m-6 c-12">
-                          <ButtonAnswer
-                            answerOption={answerOption}
-                            isCorrectAnswer={
-                              answerOption === currentQuestion.answer
-                            }
-                            isSelectedAnswer={
-                              answerOption ===
-                              historyAnswer[currentQuestionIndex]
-                            }
-                            revealAnswers={revealAnswers}
-                            handleAnswerOptionClick={handleAnswerOptionClick}
-                          ></ButtonAnswer>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-          </div> */}
         </div>
       </div>
     </div>
