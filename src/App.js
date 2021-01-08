@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import ButtonAnswer from "./components/ButtonAnswer";
 import ItemQuestion from "./components/ItemQuestion";
+import QuizBox from "./components/QuizBox";
 import "./publics/grid.css";
 
 function App() {
@@ -99,8 +100,8 @@ function App() {
     setShowScore(true);
     setRevealAnswers(true);
   };
-  console.log("selected: ", selectedAnswer);
-  console.log("historyL: ", historyAnswer[0]);
+  // console.log("selected: ", selectedAnswer);
+  // console.log("historyL: ", historyAnswer[0]);
   return (
     <div className="App">
       <div className="row">
@@ -137,7 +138,17 @@ function App() {
           </div>
         </div>
         <div className="col l=8 m-8">
-          <div className="quiz-box">
+          <QuizBox
+            showScore={showScore}
+            score={score}
+            questions={questions}
+            currentQuestion={currentQuestion}
+            currentQuestionIndex={currentQuestionIndex}
+            historyAnswer={historyAnswer}
+            revealAnswers={revealAnswers}
+            handleAnswerOptionClick={handleAnswerOptionClick}
+          />
+          {/* <div className="quiz-box">
             {showScore ? (
               <div className="score-section">
                 You scored {score} out of {questions.length}
@@ -173,7 +184,7 @@ function App() {
                 </div>
               </>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

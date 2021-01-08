@@ -13,7 +13,6 @@ function ItemQuestion(props) {
   } = props;
 
   let backgroundColor;
-  console.log("Check", isSelectedAnswer);
   if (revealAnswers && isSelectedAnswer) {
     backgroundColor = "#2dd42d";
   } else if (revealAnswers && !isSelectedAnswer) {
