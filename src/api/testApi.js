@@ -1,9 +1,9 @@
 import axiosClient from "./axiosClient";
 
 const testApi = {
-  getAll: (params) => {
-    const url = "/Questions";
-    return axiosClient.get(url, { params });
+  getAll: (id) => {
+    const url = `/testbook/1/unit/${id}`;
+    return axiosClient.get(url);
   },
 };
 

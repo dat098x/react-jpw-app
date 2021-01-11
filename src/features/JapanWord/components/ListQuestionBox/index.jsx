@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ItemQuestion from "../ItemQuestion";
+import ButtonBegin from "../ButtonBegin";
+
+import "./ListQuestionBox.css";
 
 ListQuestionBox.propTypes = {};
 
 function ListQuestionBox(props) {
   const {
     timer,
+    startQuiz,
     revealAnswers,
     historyAnswer,
     handleQuestionItemClick,
@@ -14,6 +18,7 @@ function ListQuestionBox(props) {
     currentQuestionIndex,
     handleCompletedQuiz,
     handleResetQuiz,
+    handleStartQuiz,
   } = props;
   const TIMER_START_VALUE = 30;
   return (
@@ -37,12 +42,23 @@ function ListQuestionBox(props) {
         ))}
       </ul>
       <div className="quiz-btn-box">
-        <button className="quiz-btn" onClick={() => handleCompletedQuiz()}>
-          Hoan thanh
-        </button>
-        <button className="quiz-btn" onClick={() => handleResetQuiz()}>
-          Lam lai
-        </button>
+        {!startQuiz ? (
+          <button className="btn-begin" onClick={() => handleResetQuiz()}>
+            Bắt đầu
+          </button>
+        ) : (
+          <>
+            <button
+              className="btn-completed"
+              onClick={() => handleCompletedQuiz()}
+            >
+              Kết quả
+            </button>
+            <button className="btn-reset" onClick={() => handleResetQuiz()}>
+              Làm lại
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

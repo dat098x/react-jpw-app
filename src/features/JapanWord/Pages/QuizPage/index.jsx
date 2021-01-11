@@ -8,7 +8,7 @@ import testApi from "../../../../api/testApi";
 QuizPage.propTypes = {};
 
 function QuizPage(props) {
-  //var questions = [
+  // var questions = [
   // {
   //   questionText: "What is the capital of Ireland",
   //   answerOptions: ["New York", "Dublin", "Madrid", "Paris"],
@@ -44,9 +44,10 @@ function QuizPage(props) {
   //   answerOptions: ["Earth", "Jupitor", "Mars", "Florida"],
   //   answer: "Florida",
   // },
-  //];
+  // ];
 
-  const [questions, setQuestionsList] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [unit, setUnit] = useState(1);
 
   useEffect(() => {
     const fetchProductList = async () => {
@@ -54,9 +55,9 @@ function QuizPage(props) {
         const params = {
           Unit: 1,
         };
-        const response = await testApi.getAll(params);
-        console.log(response);
-        setQuestionsList(response);
+        const response = await testApi.getAll("1");
+        console.log(response.questions);
+        setQuestions(response.questions);
       } catch (error) {
         console.log("Failed to fetch product list: ", error);
       }
@@ -70,6 +71,7 @@ function QuizPage(props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [startQuiz, setStartQuiz] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState();
   const [revealAnswers, setRevealAnswers] = useState(false);
   const [historyAnswer, setHistoryAnswer] = useState([]);
@@ -84,17 +86,20 @@ function QuizPage(props) {
   };
 
   useEffect(() => {
-    updateTimer();
-  }, [timer]);
+    if (startQuiz) updateTimer();
+  }, [timer, startQuiz]);
 
   const handleAnswerOptionClick = (answerOptions) => {
-    if (revealAnswers) return;
+    if (revealAnswers || !startQuiz) return;
+
     if (historyAnswer.length === 0) {
       historyAnswer.push(answerOptions);
     } else {
       historyAnswer.splice(currentQuestionIndex, 1, answerOptions);
     }
+
     setSelectedAnswer(answerOptions);
+
     if (answerOptions === currentQuestion.answer) {
       setScore(score + 1);
     }
@@ -113,15 +118,27 @@ function QuizPage(props) {
     setShowScore(false);
   };
   const handleResetQuiz = () => {
-    setRevealAnswers(false);
-    setCurrentQuestionIndex(0);
-    setShowScore(false);
     setTimer(TIMER_START_VALUE);
+    setRevealAnswers(false);
+    setShowScore(false);
+    setStartQuiz(true);
+    setCurrentQuestionIndex(0);
     setHistoryAnswer([]);
   };
   const handleCompletedQuiz = () => {
     setShowScore(true);
     setRevealAnswers(true);
+    setStartQuiz(false);
+  };
+
+  const handleStartQuiz = () => {
+    setStartQuiz(true);
+    console.log(startQuiz);
+  };
+
+  const handleUnitClick = (unit) => {
+    console.log("Unit: " + unit);
+    setUnit(unit);
   };
   // console.log("selected: ", selectedAnswer);
   // console.log("historyL: ", historyAnswer[0]);
@@ -134,6 +151,7 @@ function QuizPage(props) {
           <div className="col l-3 m-3">
             <ListQuestionBox
               timer={timer}
+              startQuiz={startQuiz}
               questions={questions}
               historyAnswer={historyAnswer}
               revealAnswers={revealAnswers}
@@ -141,9 +159,10 @@ function QuizPage(props) {
               handleQuestionItemClick={handleQuestionItemClick}
               handleCompletedQuiz={handleCompletedQuiz}
               handleResetQuiz={handleResetQuiz}
+              handleStartQuiz={handleStartQuiz}
             />
           </div>
-          <div className="col l=6 m-6">
+          <div className="col l-6 m-6">
             <QuizBox
               score={score}
               showScore={showScore}
@@ -155,8 +174,8 @@ function QuizPage(props) {
               handleAnswerOptionClick={handleAnswerOptionClick}
             />
           </div>
-          <div className="col l=3 m-3">
-            <ListTests />
+          <div className="col l-3 m-3">
+            <ListTests handleUnitClick={handleUnitClick} />
           </div>
         </div>
       )}

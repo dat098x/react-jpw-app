@@ -14,7 +14,7 @@ function JapanWord(props) {
     <Switch>
       <Route exact path={match.url} component={MainPage} />
 
-      <Route path={`${match.url}/quiz`} component={QuizPage} test={"hello"} />
+      <Route path={`${match.url}/quiz`} component={QuizPage} />
 
       <Route component={NotFound} />
     </Switch>

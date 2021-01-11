@@ -14,9 +14,9 @@ function ItemQuestion(props) {
 
   let backgroundColor;
   if (revealAnswers && isSelectedAnswer) {
-    backgroundColor = "#2dd42d";
+    backgroundColor = "#78ec70";
   } else if (revealAnswers && !isSelectedAnswer) {
-    backgroundColor = "#ff3030";
+    backgroundColor = "#ff6f6f";
   }
 
   return (

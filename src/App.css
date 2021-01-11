@@ -10,14 +10,14 @@
   display: block;
   justify-content: center;
   align-items: center;
+  padding-top: 4rem;
 }
 
 .quiz-box {
   height: 350px;
-  width: 600px;
 
   background-color: white;
-  border-radius: 2rem;
+  border-radius: 1rem;
 
   box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
 }
@@ -38,19 +38,19 @@
 
 .answer-section {
   height: 50%;
-  padding: 0 15px;
-  padding-top: 40px;
+  padding: 0 25px;
+  padding-top: 30px;
 }
 
-button {
-  width: 80%;
-  height: 40px;
+.btn-answer {
+  width: 90%;
+  height: 50px;
   font-size: 16px;
   color: #000000;
-  background-color: #fefeff;
-  border-radius: 20px;
   padding: 5px;
-  border: 1px solid #000000;
+  border: 1px solid #eae1e1;
+  border-radius: 10px;
+  background: #efefef;
   cursor: pointer;
   outline: none;
   transition: all 0.1s ease-in;
@@ -61,10 +61,10 @@ button:hover {
 }
 
 .list-question-box {
-  height: 350px;
+  min-height: 260px;
   background-color: white;
   box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 2rem;
+  border-radius: 1rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -89,8 +89,10 @@ button:hover {
   align-items: center;
   height: 30px;
   width: 30px;
-  border: 2px solid #000000;
-  border-radius: 50%;
+
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.45);
+  border: 1px solid #e2e2e2;
 
   font-size: 20px;
   font-weight: 400;
@@ -102,7 +104,7 @@ button:hover {
 }
 
 .list-question-item.list-question-item--current {
-  background-color: #d3d3d3;
+  background-color: #99e9f3;
 }
 
 .timer-wrapper {

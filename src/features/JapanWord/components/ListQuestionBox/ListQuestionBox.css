@@ -1,0 +1,42 @@
+.list-question-box {
+  font-family: "Concert One", cursive;
+  user-select: none;
+}
+
+.quiz-btn-box {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-begin {
+  background-color: white;
+  padding: 15px 30px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
+  border: 1px solid #e2e2e2;
+
+  outline: none;
+}
+
+.btn-reset,
+.btn-completed {
+  background-color: white;
+  padding: 5px 15px;
+  margin: 0 5px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
+  border: 1px solid #e2e2e2;
+
+  outline: none;
+}

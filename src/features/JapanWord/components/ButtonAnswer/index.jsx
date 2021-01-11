@@ -20,6 +20,7 @@ function ButtonAnswer(props) {
 
   return (
     <button
+      className="btn-answer"
       style={{ backgroundColor: backgroundColor }}
       onClick={() => handleAnswerOptionClick(answerOption)}
     >
