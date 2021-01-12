@@ -11,18 +11,31 @@ function QuizBox(props) {
   const {
     showScore,
     score,
-    questions,
-    currentQuestion,
+
+    currentUnit,
     historyAnswer,
     currentQuestionIndex,
     revealAnswers,
     handleAnswerOptionClick,
   } = props;
+
+  //console.log(currentUnit.questions[currentQuestionIndex]);
+  const currentQuestion = currentUnit.questions[currentQuestionIndex];
   return (
     <div className="quiz-box">
       {showScore ? (
         <div className="score-section">
-          You scored {score} out of {questions.length}
+          <div className="score-box">
+            <h3>Kết quả</h3>
+            <span>
+              Số câu đúng: {score}/{currentUnit.questions.length}
+            </span>
+            <br />
+            <span>
+              Số câu sai: {currentUnit.questions.length - score}/
+              {currentUnit.questions.length}
+            </span>
+          </div>
         </div>
       ) : (
         <>

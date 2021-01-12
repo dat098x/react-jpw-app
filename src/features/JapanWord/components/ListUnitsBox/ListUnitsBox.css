@@ -1,0 +1,36 @@
+.list-test-box {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 10px 0;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.list-test-item {
+  margin: 10px 0;
+  padding: 2px 15px;
+
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.45);
+  border: 1px solid #e2e2e2;
+
+  font-size: 20px;
+  font-weight: 400;
+
+  cursor: pointer;
+  font-family: "Concert One", cursive;
+}
+.list-test-item:hover {
+  background-color: #efefef;
+}
+
+.list-test-item.list-test-item--current {
+  background-color: #99e9f3;
+}
+
+.list-test-text {
+  padding: 10px;
+}

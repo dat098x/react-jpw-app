@@ -2,62 +2,31 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ListQuestionBox from "../../components/ListQuestionBox";
 import QuizBox from "../../components/QuizBox";
-import ListTests from "../../components/ListTests";
 import testApi from "../../../../api/testApi";
+import ListUnitsBox from "../../components/ListUnitsBox";
+import useModal from "../../../../Hooks/useModal";
+import Modal from "../../../../public/Modal";
 
 QuizPage.propTypes = {};
 
 function QuizPage(props) {
-  // var questions = [
-  // {
-  //   questionText: "What is the capital of Ireland",
-  //   answerOptions: ["New York", "Dublin", "Madrid", "Paris"],
-  //   answer: "Dublin",
-  // },
-  // {
-  //   questionText: "Luke Skywalker is a character from which film series",
-  //   answerOptions: [
-  //     "The Lion King",
-  //     "Harry Potter",
-  //     "Star Wars",
-  //     "Lord of the Rings",
-  //   ],
-  //   answer: "Star Wars",
-  // },
-  // {
-  //   questionText: "How many days are in September",
-  //   answerOptions: ["28", "29", "30", "31"],
-  //   answer: "30",
-  // },
-  // {
-  //   questionText: "What is the house number of the Simpsons?",
-  //   answerOptions: ["1", "64", "742", "0"],
-  //   answer: "742",
-  // },
-  // {
-  //   questionText: "Which of these is not an planet?",
-  //   answerOptions: ["Earth", "Jupitor", "Mars", "Florida"],
-  //   answer: "Florida",
-  // },
-  // {
-  //   questionText: "Which of these is not an planet?",
-  //   answerOptions: ["Earth", "Jupitor", "Mars", "Florida"],
-  //   answer: "Florida",
-  // },
-  // ];
-
-  const [questions, setQuestions] = useState([]);
-  const [unit, setUnit] = useState(1);
+  const [unitList, setUnitList] = useState([]);
+  const [historyQuestionAnswered, setHistoryQuestionAnswered] = useState([]);
+  const [historyScored, setHistoryScored] = useState();
+  const [modalBindTo, setModalBindTo] = useState();
+  const { isShowing, toggle } = useModal();
 
   useEffect(() => {
     const fetchProductList = async () => {
       try {
-        const params = {
-          Unit: 1,
-        };
-        const response = await testApi.getAll("1");
-        console.log(response.questions);
-        setQuestions(response.questions);
+        const params = {};
+
+        const testResponse = await testApi.getAllTest();
+        setUnitList(testResponse);
+        setHistoryQuestionAnswered(
+          Array(testResponse[0].questions.length).fill(false)
+        );
+        setHistoryScored(Array(testResponse[0].questions.length).fill(0));
       } catch (error) {
         console.log("Failed to fetch product list: ", error);
       }
@@ -66,17 +35,42 @@ function QuizPage(props) {
     fetchProductList();
   }, []);
 
+  // Initial Timer
   const TIMER_START_VALUE = 30;
   const [timer, setTimer] = useState(TIMER_START_VALUE);
+  // Index Of Test
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [nextUnitIndex, setNextUnitIndex] = useState(0);
+  const [currentUnitIndex, setCurrentUnitIndex] = useState(0);
+
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [startQuiz, setStartQuiz] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState();
   const [revealAnswers, setRevealAnswers] = useState(false);
   const [historyAnswer, setHistoryAnswer] = useState([]);
 
-  const currentQuestion = questions[currentQuestionIndex];
+  const currentUnit = unitList[currentUnitIndex];
+
+  const setQuizAndBeginQuiz = (startQuiz) => {
+    setCurrentQuestionIndex(0);
+    setTimer(TIMER_START_VALUE);
+    setRevealAnswers(false);
+    setShowScore(false);
+    setStartQuiz(startQuiz);
+    setHistoryAnswer([]);
+    setHistoryQuestionAnswered(Array(currentUnit.questions.length).fill(false));
+    setHistoryScored(Array(currentUnit.questions.length).fill(0));
+  };
+
+  const calculateScore = () => {
+    setScore(
+      historyScored.reduce(
+        (accumulator, currentValue) => accumulator + currentValue
+      ),
+      0
+    );
+  };
+
   const updateTimer = () => {
     if (!revealAnswers && timer > 0) {
       setTimeout(() => setTimer(timer - 1), 1000);
@@ -92,24 +86,25 @@ function QuizPage(props) {
   const handleAnswerOptionClick = (answerOptions) => {
     if (revealAnswers || !startQuiz) return;
 
-    if (historyAnswer.length === 0) {
-      historyAnswer.push(answerOptions);
+    historyQuestionAnswered.splice(currentQuestionIndex, 1, true);
+    historyAnswer.splice(currentQuestionIndex, 1, answerOptions);
+
+    if (answerOptions === currentUnit.questions[currentQuestionIndex].answer) {
+      historyScored.splice(currentQuestionIndex, 1, 1);
     } else {
-      historyAnswer.splice(currentQuestionIndex, 1, answerOptions);
-    }
-
-    setSelectedAnswer(answerOptions);
-
-    if (answerOptions === currentQuestion.answer) {
-      setScore(score + 1);
+      historyScored.splice(currentQuestionIndex, 1, 0);
     }
 
     const nextQuestionIndex = currentQuestionIndex + 1;
-    if (nextQuestionIndex < questions.length) {
+    if (nextQuestionIndex < currentUnit.questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
+    } else if (historyQuestionAnswered.indexOf(false) !== -1) {
+      setCurrentQuestionIndex(historyQuestionAnswered.indexOf(false));
     } else {
+      calculateScore();
       setShowScore(true);
       setRevealAnswers(true);
+      setStartQuiz(false);
     }
   };
 
@@ -117,18 +112,26 @@ function QuizPage(props) {
     setCurrentQuestionIndex(index);
     setShowScore(false);
   };
+
   const handleResetQuiz = () => {
-    setTimer(TIMER_START_VALUE);
-    setRevealAnswers(false);
-    setShowScore(false);
-    setStartQuiz(true);
-    setCurrentQuestionIndex(0);
-    setHistoryAnswer([]);
+    setQuizAndBeginQuiz(true);
   };
-  const handleCompletedQuiz = () => {
-    setShowScore(true);
-    setRevealAnswers(true);
-    setStartQuiz(false);
+
+  const handleCompletedQuiz = (status = "not-submit") => {
+    if (
+      historyQuestionAnswered.indexOf(false) !== -1 &&
+      status === "not-submit" &&
+      !revealAnswers
+    ) {
+      toggle();
+      setModalBindTo("Completed-Click");
+    } else {
+      calculateScore();
+      setShowScore(true);
+      setRevealAnswers(true);
+      setStartQuiz(false);
+      toggle();
+    }
   };
 
   const handleStartQuiz = () => {
@@ -137,14 +140,20 @@ function QuizPage(props) {
   };
 
   const handleUnitClick = (unit) => {
-    console.log("Unit: " + unit);
-    setUnit(unit);
+    console.log(1111);
+    if (startQuiz) {
+      toggle();
+      setNextUnitIndex(unit);
+      setModalBindTo("Unit-Click");
+    } else {
+      setCurrentUnitIndex(unit);
+      setQuizAndBeginQuiz(false);
+    }
   };
-  // console.log("selected: ", selectedAnswer);
-  // console.log("historyL: ", historyAnswer[0]);
+
   return (
     <div className="quiz-page">
-      {questions.length === 0 ? (
+      {!currentUnit ? (
         <div> Loading...</div>
       ) : (
         <div className="row">
@@ -152,10 +161,11 @@ function QuizPage(props) {
             <ListQuestionBox
               timer={timer}
               startQuiz={startQuiz}
-              questions={questions}
               historyAnswer={historyAnswer}
+              historyQuestionAnswered={historyQuestionAnswered}
               revealAnswers={revealAnswers}
               currentQuestionIndex={currentQuestionIndex}
+              currentUnit={currentUnit}
               handleQuestionItemClick={handleQuestionItemClick}
               handleCompletedQuiz={handleCompletedQuiz}
               handleResetQuiz={handleResetQuiz}
@@ -166,17 +176,28 @@ function QuizPage(props) {
             <QuizBox
               score={score}
               showScore={showScore}
-              questions={questions}
               historyAnswer={historyAnswer}
               revealAnswers={revealAnswers}
               currentQuestionIndex={currentQuestionIndex}
-              currentQuestion={currentQuestion}
+              currentUnit={currentUnit}
               handleAnswerOptionClick={handleAnswerOptionClick}
             />
           </div>
           <div className="col l-3 m-3">
-            <ListTests handleUnitClick={handleUnitClick} />
+            <ListUnitsBox
+              unitList={unitList}
+              currentUnitIndex={currentUnitIndex}
+              handleUnitClick={handleUnitClick}
+            />
           </div>
+          <Modal
+            isShowing={isShowing}
+            hide={toggle}
+            modalBindTo={modalBindTo}
+            nextUnitIndex={nextUnitIndex}
+            handleCompletedQuiz={handleCompletedQuiz}
+            handleUnitClick={handleUnitClick}
+          />
         </div>
       )}
     </div>

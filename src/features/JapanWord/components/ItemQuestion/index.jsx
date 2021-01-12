@@ -8,17 +8,21 @@ function ItemQuestion(props) {
     currentQuestionIndex,
     revealAnswers,
     isSelectedAnswer,
+    isSelectedQuestion,
     handleQuestionItemClick,
     index,
   } = props;
+
+  console.log(isSelectedQuestion);
 
   let backgroundColor;
   if (revealAnswers && isSelectedAnswer) {
     backgroundColor = "#78ec70";
   } else if (revealAnswers && !isSelectedAnswer) {
     backgroundColor = "#ff6f6f";
+  } else if (isSelectedQuestion) {
+    backgroundColor = "#d3d3d3";
   }
-
   return (
     <li
       style={{ backgroundColor: backgroundColor }}

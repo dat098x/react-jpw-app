@@ -13,13 +13,17 @@ function ListQuestionBox(props) {
     startQuiz,
     revealAnswers,
     historyAnswer,
-    handleQuestionItemClick,
-    questions,
+    historyQuestionAnswered,
+    currentUnit,
     currentQuestionIndex,
+    handleQuestionItemClick,
     handleCompletedQuiz,
     handleResetQuiz,
     handleStartQuiz,
   } = props;
+
+  const questions = currentUnit.questions;
+
   const TIMER_START_VALUE = 30;
   return (
     <div className="list-question-box">
@@ -35,6 +39,7 @@ function ListQuestionBox(props) {
             key={index}
             revealAnswers={revealAnswers}
             isSelectedAnswer={question.answer === historyAnswer[index]}
+            isSelectedQuestion={historyQuestionAnswered[index]}
             currentQuestionIndex={currentQuestionIndex}
             handleQuestionItemClick={handleQuestionItemClick}
             index={index}
