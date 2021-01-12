@@ -45,7 +45,7 @@ const Modal = ({
                   className="btn-reset"
                   onClick={() => {
                     modalBindTo === "Unit-Click"
-                      ? handleUnitClick(nextUnitIndex)
+                      ? handleUnitClick(nextUnitIndex, "submit")
                       : handleCompletedQuiz("submit");
                   }}
                 >

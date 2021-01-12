@@ -139,12 +139,16 @@ function QuizPage(props) {
     console.log(startQuiz);
   };
 
-  const handleUnitClick = (unit) => {
-    console.log(1111);
-    if (startQuiz) {
+  const handleUnitClick = (unit, status = "not-submit") => {
+    if (status === "submit") {
       toggle();
+      setStartQuiz(false);
+      setCurrentUnitIndex(unit);
+      setQuizAndBeginQuiz(false);
+    } else if (startQuiz) {
       setNextUnitIndex(unit);
       setModalBindTo("Unit-Click");
+      toggle();
     } else {
       setCurrentUnitIndex(unit);
       setQuizAndBeginQuiz(false);
