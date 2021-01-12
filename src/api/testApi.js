@@ -6,8 +6,8 @@ const testApi = {
     return axiosClient.get(url);
   },
 
-  getAllTest: () => {
-    const url = `/testbook/1/unit`;
+  getAllTest: (url) => {
+    //const url = `/testbook/1/unit`;
     return axiosClient.get(url);
   },
 };

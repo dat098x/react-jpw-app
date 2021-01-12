@@ -12,7 +12,7 @@ function JapanWord(props) {
   console.log("Match-URL:", { match });
   return (
     <Switch>
-      <Route exact path={match.url} component={MainPage} />
+      <Route path={`${match.url}/main`} component={MainPage} />
 
       <Route path={`${match.url}/quiz`} component={QuizPage} />
 

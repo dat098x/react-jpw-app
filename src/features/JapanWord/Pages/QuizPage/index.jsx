@@ -6,10 +6,13 @@ import testApi from "../../../../api/testApi";
 import ListUnitsBox from "../../components/ListUnitsBox";
 import useModal from "../../../../Hooks/useModal";
 import Modal from "../../../../public/Modal";
+import { useRouteMatch } from "react-router-dom";
 
 QuizPage.propTypes = {};
 
 function QuizPage(props) {
+  const { url } = props.location;
+  console.log(url);
   const [unitList, setUnitList] = useState([]);
   const [historyQuestionAnswered, setHistoryQuestionAnswered] = useState([]);
   const [historyScored, setHistoryScored] = useState();
@@ -21,7 +24,7 @@ function QuizPage(props) {
       try {
         const params = {};
 
-        const testResponse = await testApi.getAllTest();
+        const testResponse = await testApi.getAllTest(url);
         setUnitList(testResponse);
         setHistoryQuestionAnswered(
           Array(testResponse[0].questions.length).fill(false)
@@ -33,7 +36,7 @@ function QuizPage(props) {
     };
 
     fetchProductList();
-  }, []);
+  }, [url]);
 
   // Initial Timer
   const TIMER_START_VALUE = 30;

@@ -21,7 +21,10 @@ function Header(props) {
                 <NavLink
                   exact
                   className="header__link"
-                  to="/japanword"
+                  to={{
+                    pathname: "/japanword/main",
+                    url: "/test/1/unit",
+                  }}
                   activeClassName="header__link--active"
                 >
                   Chương trình tiếng Nhật
@@ -31,7 +34,10 @@ function Header(props) {
                 <NavLink
                   exact
                   className="header__link"
-                  to="/japanword/quiz"
+                  to={{
+                    pathname: "/japanword/quiz",
+                    url: "/testbook/1/unit",
+                  }}
                   activeClassName="header__link--active"
                 >
                   Luyện thi tiếng Nhật
