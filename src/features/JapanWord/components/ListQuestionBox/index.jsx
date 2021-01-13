@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ItemQuestion from "../ItemQuestion";
-import ButtonBegin from "../ButtonBegin";
 
 import "./ListQuestionBox.css";
 
@@ -19,12 +18,12 @@ function ListQuestionBox(props) {
     handleQuestionItemClick,
     handleCompletedQuiz,
     handleResetQuiz,
-    handleStartQuiz,
   } = props;
 
   const questions = currentUnit.questions;
 
-  const TIMER_START_VALUE = 30;
+  const TIMER_START_VALUE = 450;
+
   return (
     <div className="list-question-box">
       <div className="timer-wrapper">
@@ -59,9 +58,9 @@ function ListQuestionBox(props) {
             >
               Kết quả
             </button>
-            <button className="btn-reset" onClick={() => handleResetQuiz()}>
+            {/* <button className="btn-reset" onClick={() => handleResetQuiz()}>
               Làm lại
-            </button>
+            </button> */}
           </>
         )}
       </div>

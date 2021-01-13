@@ -42,6 +42,38 @@ function Header(props) {
                 >
                   Luyện thi tiếng Nhật
                 </NavLink>
+                <div className="test-panel">
+                  <ul className="test-panel-list">
+                    <li className="test-panel-item">
+                      <NavLink
+                        exact
+                        className="header__link"
+                        to={{
+                          pathname: "/japanword/quiz",
+                          url: "/testbook/1/unit",
+                          name: "500 câu N45",
+                        }}
+                        activeClassName="header__link--active"
+                      >
+                        500 câu N45
+                      </NavLink>
+                    </li>
+                    <li className="test-panel-item">
+                      <NavLink
+                        exact
+                        className="header__link"
+                        to={{
+                          pathname: "/japanword/quiz",
+                          url: "/testbook/2/unit",
+                          name: "500 câu N3",
+                        }}
+                        activeClassName="header__link--active"
+                      >
+                        500 câu N3
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
               </li>
             </ul>
           </div>

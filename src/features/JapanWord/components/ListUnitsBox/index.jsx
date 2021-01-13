@@ -6,10 +6,10 @@ import "./ListUnitsBox.css";
 ListUnitsBox.propTypes = {};
 
 function ListUnitsBox(props) {
-  const { unitList, currentUnitIndex, handleUnitClick } = props;
+  const { unitList, currentUnitIndex, handleUnitClick, name } = props;
   return (
     <div className="list-test-box">
-      <h2 className="list-test-text">500 câu hỏi N4N5</h2>
+      <h2 className="list-test-text">{name}</h2>
       <ul className="list-test">
         {unitList.map((unit, index) => (
           <li

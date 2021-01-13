@@ -24,6 +24,7 @@ const Modal = ({
           >
             <div className="modal">
               <div className="modal-header">
+                <h3>Nộp bài</h3>
                 <button
                   type="button"
                   className="modal-close-button"
@@ -38,11 +39,11 @@ const Modal = ({
               <br />
               <span> Bạn có chắc muốn bỏ kết quả hiện tại ?</span>
               <div className="modal-footer">
-                <button className="btn-completed" onClick={hide}>
+                <button className="btn-cancel" onClick={hide}>
                   Hủy bỏ
                 </button>
                 <button
-                  className="btn-reset"
+                  className="btn-submit"
                   onClick={() => {
                     modalBindTo === "Unit-Click"
                       ? handleUnitClick(nextUnitIndex, "submit")

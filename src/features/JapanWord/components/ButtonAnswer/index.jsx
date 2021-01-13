@@ -12,16 +12,26 @@ function ButtonAnswer(props) {
     revealAnswers,
   } = props;
   let backgroundColor;
+  let borderColor;
+  let color;
   if (revealAnswers && isCorrectAnswer) {
-    backgroundColor = "#2dd42d";
+    backgroundColor = "#4ce165";
+    borderColor = "#07c527";
+    color = "white";
   } else if (revealAnswers && isSelectedAnswer) {
-    backgroundColor = "#ff3030";
+    backgroundColor = "#ff6465";
+    borderColor = "#d33435";
+    color = "white";
   }
 
   return (
     <button
       className="btn-answer"
-      style={{ backgroundColor: backgroundColor }}
+      style={{
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
+        color: color,
+      }}
       onClick={() => handleAnswerOptionClick(answerOption)}
     >
       {answerOption}

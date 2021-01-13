@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import "./public/grid.css";
+
 const JapanWord = React.lazy(() => import("./features/JapanWord"));
 
 function App() {
@@ -14,7 +15,6 @@ function App() {
           <Header />
           <Switch>
             <Redirect exact from="/" to="/japanword" />
-
             <Route path="/japanword" component={JapanWord} />
             <Route component={NotFound} />
           </Switch>

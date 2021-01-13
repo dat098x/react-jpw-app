@@ -17,3 +17,63 @@
   background-color: #eee;
   border-radius: 1rem;
 }
+
+.quiz-box {
+  height: 350px;
+
+  background-color: white;
+  border-radius: 1rem;
+
+  border: 1px solid #e6e5e5;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+}
+.quiz-box button {
+  margin: 10px 0;
+}
+.question-section {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-section .question-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.answer-section {
+  height: 50%;
+  padding: 0 25px;
+  padding-top: 30px;
+}
+
+.btn-answer {
+  width: 90%;
+  height: 50px;
+  padding: 5px;
+
+  font-size: 16px;
+  font-weight: 600;
+  background: #efefef;
+  color: #000000;
+
+  border-radius: 10px;
+  border: 1px solid #e6e5e5;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in;
+}
+
+.btn-answer:active {
+  color: white;
+  box-shadow: none;
+  transform: translateY(2px);
+  transform: translateX(2px);
+}
+
+.btn-answer:hover {
+  filter: brightness(95%);
+}

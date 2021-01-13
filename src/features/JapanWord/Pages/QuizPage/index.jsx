@@ -1,37 +1,58 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+
 import ListQuestionBox from "../../components/ListQuestionBox";
 import QuizBox from "../../components/QuizBox";
-import testApi from "../../../../api/testApi";
 import ListUnitsBox from "../../components/ListUnitsBox";
+import testApi from "../../../../api/testApi";
+
 import useModal from "../../../../Hooks/useModal";
 import Modal from "../../../../public/Modal";
-import { useRouteMatch } from "react-router-dom";
+
+// const QuizBox = React.lazy(() => import("../../components/QuizBox"));
+// const ListQuestionBox = React.lazy(() =>
+//   import("../../components/ListQuestionBox")
+// );
+// const ListUnitsBox = React.lazy(() => import("../../components/ListUnitsBox"));
 
 QuizPage.propTypes = {};
 
 function QuizPage(props) {
-  const { url } = props.location;
-  console.log(url);
+  const { url, name } = props.location;
+  const [nameUnit, setNameUnit] = useState("500 Câu N45");
+
   const [unitList, setUnitList] = useState([]);
   const [historyQuestionAnswered, setHistoryQuestionAnswered] = useState([]);
   const [historyScored, setHistoryScored] = useState();
   const [modalBindTo, setModalBindTo] = useState();
+  const [isFetching, setIsFetching] = useState(false);
+
+  // Hook Modal
   const { isShowing, toggle } = useModal();
 
   useEffect(() => {
+    setIsFetching(true);
+    if (name) {
+      setNameUnit(name);
+    }
     const fetchProductList = async () => {
       try {
-        const params = {};
+        const params = {
+          url: url ? url : "/testbook/1/unit",
+        };
+        const testResponse = await testApi.getAllUnit(params.url);
 
-        const testResponse = await testApi.getAllTest(url);
         setUnitList(testResponse);
         setHistoryQuestionAnswered(
           Array(testResponse[0].questions.length).fill(false)
         );
         setHistoryScored(Array(testResponse[0].questions.length).fill(0));
+        setTimerStart(testResponse[0].timer);
+        setQuizAndBeginQuiz(false);
+        setIsFetching(false);
       } catch (error) {
         console.log("Failed to fetch product list: ", error);
+        setIsFetching(false);
       }
     };
 
@@ -39,8 +60,8 @@ function QuizPage(props) {
   }, [url]);
 
   // Initial Timer
-  const TIMER_START_VALUE = 30;
-  const [timer, setTimer] = useState(TIMER_START_VALUE);
+  const [timerStart, setTimerStart] = useState(0);
+  const [timer, setTimer] = useState(timerStart);
   // Index Of Test
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [nextUnitIndex, setNextUnitIndex] = useState(0);
@@ -56,13 +77,14 @@ function QuizPage(props) {
 
   const setQuizAndBeginQuiz = (startQuiz) => {
     setCurrentQuestionIndex(0);
-    setTimer(TIMER_START_VALUE);
+    //setTimerStart(currentUnit.timer);
+    setTimer(timerStart);
     setRevealAnswers(false);
     setShowScore(false);
-    setStartQuiz(startQuiz);
     setHistoryAnswer([]);
     setHistoryQuestionAnswered(Array(currentUnit.questions.length).fill(false));
     setHistoryScored(Array(currentUnit.questions.length).fill(0));
+    setStartQuiz(startQuiz);
   };
 
   const calculateScore = () => {
@@ -121,19 +143,26 @@ function QuizPage(props) {
   };
 
   const handleCompletedQuiz = (status = "not-submit") => {
-    if (
-      historyQuestionAnswered.indexOf(false) !== -1 &&
-      status === "not-submit" &&
-      !revealAnswers
-    ) {
-      toggle();
-      setModalBindTo("Completed-Click");
-    } else {
+    if (status === "submit") {
       calculateScore();
       setShowScore(true);
       setRevealAnswers(true);
       setStartQuiz(false);
       toggle();
+    } else {
+      if (
+        historyQuestionAnswered.indexOf(false) !== -1 &&
+        status === "not-submit" &&
+        !revealAnswers
+      ) {
+        toggle();
+        setModalBindTo("Completed-Click");
+      } else {
+        calculateScore();
+        setShowScore(true);
+        setRevealAnswers(true);
+        setStartQuiz(false);
+      }
     }
   };
 
@@ -160,7 +189,7 @@ function QuizPage(props) {
 
   return (
     <div className="quiz-page">
-      {!currentUnit ? (
+      {!currentUnit || isFetching ? (
         <div> Loading...</div>
       ) : (
         <div className="row">
@@ -195,6 +224,7 @@ function QuizPage(props) {
               unitList={unitList}
               currentUnitIndex={currentUnitIndex}
               handleUnitClick={handleUnitClick}
+              name={nameUnit}
             />
           </div>
           <Modal
