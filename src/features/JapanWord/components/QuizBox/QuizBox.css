@@ -14,10 +14,46 @@
 .score-box {
   width: 50%;
   height: 50%;
-  background-color: #eee;
+  background-color: #ffef9f;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+
   border-radius: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
+.score-header {
+}
+.score-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.score-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 10px 15px;
+}
+
+.score-text {
+  margin-bottom: 5px;
+
+  font-weight: 500;
+  font-size: large;
+  line-height: 1;
+  font-family: "Concert One", cursive;
+}
+
+.score-footer {
+}
 .quiz-box {
   height: 350px;
 
@@ -27,7 +63,11 @@
   border: 1px solid #e6e5e5;
   box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
 }
-.quiz-box button {
+.quiz-box:hover .next-btn,
+.quiz-box:hover .prev-btn {
+  opacity: 1;
+}
+.quiz-box .btn-answer {
   margin: 10px 0;
 }
 .question-section {
@@ -35,6 +75,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: relative;
+}
+
+.question-number {
+  position: absolute;
+  top: 0;
+  left: 5%;
+  padding: 5px 15px;
+
+  transform: translateY(-50%);
+
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 2rem;
+  background-color: white;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+
+  user-select: none;
 }
 
 .question-section .question-text {
@@ -46,6 +105,7 @@
   height: 50%;
   padding: 0 25px;
   padding-top: 30px;
+  position: relative;
 }
 
 .btn-answer {
@@ -76,4 +136,82 @@
 
 .btn-answer:hover {
   filter: brightness(95%);
+}
+
+.next-btn,
+.prev-btn {
+  position: absolute;
+  top: -15%;
+  height: 35px;
+  width: 35px;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 0;
+  background-color: white;
+
+  border-radius: 50%;
+  border: 1px solid #e6e5e5;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+
+  outline: none;
+  opacity: 0;
+
+  transition: all 0.1s ease-out;
+}
+
+.next-btn:hover,
+.prev-btn:hover {
+  background-color: #e4e1e1;
+  border: 1px solid #dbd5d5;
+}
+
+.next-btn:active,
+.prev-btn:active {
+  transform: translate3d(2px, 2px, 0);
+  box-shadow: none;
+}
+
+.prev-btn {
+  left: -10px;
+}
+
+.next-btn {
+  right: -10px;
+}
+
+.score-footer > button {
+}
+
+.restart-btn,
+.next-unit-btn {
+  height: 35px;
+  width: 35px;
+  margin-right: 11px;
+  margin-left: 10px;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 0;
+  background-color: white;
+
+  border-radius: 50%;
+  border: 1px solid #e6e5e5;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+
+  outline: none;
+
+  transition: all 0.1s ease-out;
+}
+
+.restart-btn:hover,
+.next-unit-btn:hover {
+  background-color: #e4e1e1;
+  border: 1px solid #dbd5d5;
+}
+
+.restart-btn:active,
+.next-unit-btn:active {
+  transform: translate3d(2px, 2px, 0);
+  box-shadow: none;
 }

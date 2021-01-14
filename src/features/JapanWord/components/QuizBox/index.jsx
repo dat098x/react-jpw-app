@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import ButtonAnswer from "../ButtonAnswer";
 
 import "./QuizBox.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ScoreSection from "../ScoreSection";
 
 QuizBox.propTypes = {};
 
@@ -11,36 +13,33 @@ function QuizBox(props) {
   const {
     showScore,
     score,
-
     currentUnit,
     historyAnswer,
     currentQuestionIndex,
     revealAnswers,
     handleAnswerOptionClick,
+    handleNextButton,
+    handlePrevButton,
+    handleResetQuiz,
+    handleNextUnitButton,
   } = props;
 
-  //console.log(currentUnit.questions[currentQuestionIndex]);
   const currentQuestion = currentUnit.questions[currentQuestionIndex];
   return (
     <div className="quiz-box">
       {showScore ? (
-        <div className="score-section">
-          <div className="score-box">
-            <h3>Kết quả</h3>
-            <span>
-              Số câu đúng: {score}/{currentUnit.questions.length}
-            </span>
-            <br />
-            <span>
-              Số câu sai: {currentUnit.questions.length - score}/
-              {currentUnit.questions.length}
-            </span>
-          </div>
-        </div>
+        <ScoreSection
+          score={score}
+          currentUnit={currentUnit}
+          handleResetQuiz={handleResetQuiz}
+          handleNextUnitButton={handleNextUnitButton}
+        />
       ) : (
         <>
           <div className="question-section">
-            {/* <div className="question-text">{currentQuestion.questionText}</div> */}
+            <div className="question-number">
+              Câu {currentQuestionIndex + 1}
+            </div>
             <ReactFuri
               word={currentQuestion.questionText}
               reading={currentQuestion.questionTextFuri}
@@ -70,6 +69,12 @@ function QuizBox(props) {
             />
           </div>
           <div className="answer-section">
+            <button className="next-btn" onClick={() => handleNextButton()}>
+              <FontAwesomeIcon icon={["fas", "angle-right"]} />
+            </button>
+            <button className="prev-btn" onClick={() => handlePrevButton()}>
+              <FontAwesomeIcon icon={["fas", "angle-left"]} />
+            </button>
             <div className="grid">
               <div className="row">
                 {currentQuestion.answerOptions.map((answerOption, index) => (

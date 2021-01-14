@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ItemQuestion from "../ItemQuestion";
 
 import "./ListQuestionBox.css";
+import Timer from "../Timer";
 
 ListQuestionBox.propTypes = {};
 
@@ -26,12 +27,8 @@ function ListQuestionBox(props) {
 
   return (
     <div className="list-question-box">
-      <div className="timer-wrapper">
-        <div
-          className="timer-countdown-bar"
-          style={{ width: (timer / TIMER_START_VALUE) * 100 + "%" }}
-        ></div>
-      </div>
+      <Timer timer={timer} startQuiz={startQuiz} />
+
       <ul className="list-question">
         {questions.map((question, index) => (
           <ItemQuestion

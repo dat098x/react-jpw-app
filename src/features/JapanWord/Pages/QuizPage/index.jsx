@@ -187,6 +187,33 @@ function QuizPage(props) {
     }
   };
 
+  // Handle Next Button
+  const handleNextButton = () => {
+    if (currentQuestionIndex >= currentUnit.questions.length - 1) {
+      setCurrentQuestionIndex(currentUnit.questions.length - 1);
+    } else {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+  // Handle Prev Button
+  const handlePrevButton = () => {
+    if (currentQuestionIndex <= 0) {
+      setCurrentQuestionIndex(0);
+    } else {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+  //Handle Next Unit
+  const handleNextUnitButton = () => {
+    console.log(currentUnitIndex);
+    if (currentUnitIndex >= unitList.length - 1) {
+      setCurrentUnitIndex(0);
+    } else {
+      setCurrentUnitIndex(currentUnitIndex + 1);
+    }
+    setQuizAndBeginQuiz(false);
+  };
+
   return (
     <div className="quiz-page">
       {!currentUnit || isFetching ? (
@@ -217,6 +244,10 @@ function QuizPage(props) {
               currentQuestionIndex={currentQuestionIndex}
               currentUnit={currentUnit}
               handleAnswerOptionClick={handleAnswerOptionClick}
+              handleNextButton={handleNextButton}
+              handlePrevButton={handlePrevButton}
+              handleResetQuiz={handleResetQuiz}
+              handleNextUnitButton={handleNextUnitButton}
             />
           </div>
           <div className="col l-3 m-3">

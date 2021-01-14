@@ -1,38 +1,94 @@
 .list-test-box {
-  background-color: white;
   border-radius: 1rem;
-  padding: 10px 0;
+  padding: 45px 20px 20px 20px;
+  background-color: white;
   border: 1px solid #e6e5e5;
   box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
 
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+
+  position: relative;
+}
+
+.unit-name {
+  position: absolute;
+
+  top: 0%;
+  padding: 5px 10px;
+
+  transform: translateY(-50%);
+
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  background-color: white;
+  border: 1px solid #e6e5e5;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.15);
+}
+.list-unit-item {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.list-day {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-day-item {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-.list-test-item {
-  margin: 10px 0;
-  padding: 10px 15px;
 
-  border-radius: 8px;
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.45);
-  border: 1px solid #e2e2e2;
-  line-height: 0px;
+  margin-left: 5px;
+  margin-bottom: 10px;
 
-  font-size: 20px;
-  font-weight: 400;
+  border-radius: 0.5rem;
+  background-color: white;
+  border: 1px solid #e6e5e5;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
 
   cursor: pointer;
-  font-family: "Concert One", cursive;
+  user-select: none;
+  transition: all 0.1 ease-in;
 }
-.list-test-item:hover {
+
+.list-day-item:active {
+  transform: translate3d(2px, 2px, 0);
+  box-shadow: none;
+}
+.week-text {
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  margin-bottom: 5px;
+}
+.day-text {
+  margin: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.day-number {
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  padding-bottom: 5px;
+  color: #d82222;
+}
+
+.list-day-item:hover {
   background-color: #efefef;
 }
 
-.list-test-item.list-test-item--current {
-  background-color: #99e9f3;
-}
-
-.list-test-text {
-  padding: 10px;
+.list-day-item.list-day-item--current {
+  background-color: #ffd89d;
+  border: 1px solid #f0c78a;
 }

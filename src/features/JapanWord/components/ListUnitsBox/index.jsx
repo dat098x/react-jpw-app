@@ -7,23 +7,27 @@ ListUnitsBox.propTypes = {};
 
 function ListUnitsBox(props) {
   const { unitList, currentUnitIndex, handleUnitClick, name } = props;
+
   return (
     <div className="list-test-box">
-      <h2 className="list-test-text">{name}</h2>
-      <ul className="list-test">
-        {unitList.map((unit, index) => (
-          <li
-            className={
-              index === currentUnitIndex
-                ? "list-test-item list-test-item--current"
-                : "list-test-item"
-            }
-            onClick={() => handleUnitClick(index)}
-          >
-            Unit {index + 1}
-          </li>
-        ))}
-      </ul>
+      <span class="unit-name">{name}</span>
+      <div className="list-unit-item">
+        <ul className="list-day">
+          {unitList.map((unit, index) => (
+            <li
+              className={
+                index === currentUnitIndex
+                  ? "list-day-item list-day-item--current"
+                  : "list-day-item"
+              }
+              onClick={() => handleUnitClick(index)}
+            >
+              <span className="day-text">Đề số</span>
+              <span className="day-number">{index + 1}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

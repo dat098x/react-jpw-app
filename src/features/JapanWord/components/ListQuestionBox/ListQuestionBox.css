@@ -1,15 +1,17 @@
 .list-question-box {
-  font-family: "Concert One", cursive;
   user-select: none;
+
+  position: relative;
 }
 
 .list-question-box {
+  padding-top: 25px;
   min-height: 260px;
   background-color: white;
   border: 1px solid #e6e5e5;
   box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
   border-radius: 1rem;
-  overflow: hidden;
+
   display: flex;
   flex-direction: column;
 }
@@ -26,6 +28,7 @@
 }
 
 .list-question-item {
+  font-family: "Concert One", cursive;
   margin: 0 9px;
   margin-bottom: 10px;
   display: flex;
@@ -58,20 +61,6 @@
   background-color: #99e9f3;
   border-color: #64ddec;
   color: white;
-}
-
-.timer-wrapper {
-  background: #dedede;
-  height: 15px;
-  border-radius: 20px;
-  margin: 10px;
-}
-
-.timer-countdown-bar {
-  background: #ffad55;
-  height: 15px;
-  border-radius: 20px;
-  transition: width 1s linear;
 }
 
 .quiz-btn-box {

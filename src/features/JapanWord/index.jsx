@@ -2,10 +2,8 @@ import React, { Suspense } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import PropTypes from "prop-types";
 import MainPage from "./Pages/MainPage";
-//import QuizPage from "./Pages/QuizPage";
+import QuizPage from "./Pages/QuizPage";
 import NotFound from "../../components/NotFound";
-
-const QuizPage = React.lazy(() => import("./Pages/QuizPage"));
 
 JapanWord.propTypes = {};
 
