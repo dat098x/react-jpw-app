@@ -220,7 +220,7 @@ function QuizPage(props) {
         <div> Loading...</div>
       ) : (
         <div className="row">
-          <div className="col l-3 m-3">
+          <div className="col l-3 m-3 c-12">
             <ListQuestionBox
               timer={timer}
               startQuiz={startQuiz}
@@ -235,7 +235,7 @@ function QuizPage(props) {
               handleStartQuiz={handleStartQuiz}
             />
           </div>
-          <div className="col l-6 m-6">
+          <div className="col l-6 m-6 c-12">
             <QuizBox
               score={score}
               showScore={showScore}
@@ -250,7 +250,7 @@ function QuizPage(props) {
               handleNextUnitButton={handleNextUnitButton}
             />
           </div>
-          <div className="col l-3 m-3">
+          <div className="col l-3 m-3 c-12">
             <ListUnitsBox
               unitList={unitList}
               currentUnitIndex={currentUnitIndex}

@@ -27,18 +27,18 @@ function ItemQuestion(props) {
     text = index + 1;
   }
   return (
-    <li
-      //style={{ backgroundColor: backgroundColor }}
-      className={
-        index === currentQuestionIndex
-          ? "list-question-item list-question-item--current"
-          : "list-question-item"
-      }
-      onClick={() => handleQuestionItemClick(index)}
-    >
-      {/* {index + 1} */}
-      {text}
-    </li>
+    <div className="col l-2-4 m-2-4 list-question-col">
+      <div
+        className={
+          index === currentQuestionIndex
+            ? "list-question-item list-question-item--current"
+            : "list-question-item"
+        }
+        onClick={() => handleQuestionItemClick(index)}
+      >
+        {text}
+      </div>
+    </div>
   );
 }
 

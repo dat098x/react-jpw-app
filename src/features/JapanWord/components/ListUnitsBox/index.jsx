@@ -11,22 +11,24 @@ function ListUnitsBox(props) {
   return (
     <div className="list-test-box">
       <span class="unit-name">{name}</span>
-      <div className="list-unit-item">
-        <ul className="list-day">
+      <div className="grid">
+        <div className="row sm-gutter list-unit-item">
           {unitList.map((unit, index) => (
-            <li
-              className={
-                index === currentUnitIndex
-                  ? "list-day-item list-day-item--current"
-                  : "list-day-item"
-              }
-              onClick={() => handleUnitClick(index)}
-            >
-              <span className="day-text">Đề số</span>
-              <span className="day-number">{index + 1}</span>
-            </li>
+            <div className="col l-3 m-3 list-unit-col">
+              <div
+                className={
+                  index === currentUnitIndex
+                    ? "list-day-item list-day-item--current"
+                    : "list-day-item"
+                }
+                onClick={() => handleUnitClick(index)}
+              >
+                <span className="day-text">Đề số</span>
+                <span className="day-number">{index + 1}</span>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );

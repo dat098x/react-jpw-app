@@ -29,19 +29,21 @@ function ListQuestionBox(props) {
     <div className="list-question-box">
       <Timer timer={timer} startQuiz={startQuiz} />
 
-      <ul className="list-question">
-        {questions.map((question, index) => (
-          <ItemQuestion
-            key={index}
-            revealAnswers={revealAnswers}
-            isSelectedAnswer={question.answer === historyAnswer[index]}
-            isSelectedQuestion={historyQuestionAnswered[index]}
-            currentQuestionIndex={currentQuestionIndex}
-            handleQuestionItemClick={handleQuestionItemClick}
-            index={index}
-          ></ItemQuestion>
-        ))}
-      </ul>
+      <div className="grid ">
+        <div className="row sm-gutter list-question">
+          {questions.map((question, index) => (
+            <ItemQuestion
+              key={index}
+              revealAnswers={revealAnswers}
+              isSelectedAnswer={question.answer === historyAnswer[index]}
+              isSelectedQuestion={historyQuestionAnswered[index]}
+              currentQuestionIndex={currentQuestionIndex}
+              handleQuestionItemClick={handleQuestionItemClick}
+              index={index}
+            ></ItemQuestion>
+          ))}
+        </div>
+      </div>
       <div className="quiz-btn-box">
         {!startQuiz ? (
           <button className="btn-begin" onClick={() => handleResetQuiz()}>
