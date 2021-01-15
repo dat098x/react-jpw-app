@@ -6,6 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f9f6ff;
+
+  background-image: url(/src/public/images/background.png);
+  background-repeat: no-repeat;
+  background-position-y: 30%;
+  background-position-x: center;
+  background-origin: border-box;
+  background-size: 70%;
 }
 
 code {

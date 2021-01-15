@@ -78,7 +78,7 @@ function QuizBox(props) {
             <div className="grid">
               <div className="row">
                 {currentQuestion.answerOptions.map((answerOption, index) => (
-                  <div className="l-6 m-6 c-12">
+                  <div className="l-6 m-6 c-6">
                     <ButtonAnswer
                       key={`answerOption-${index}`}
                       answerOption={answerOption}
