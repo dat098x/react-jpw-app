@@ -12,6 +12,14 @@
   .header__wrapper {
     justify-content: center;
   }
+
+  .btn-answer:focus {
+    color: #000000;
+    border: 1px solid #e6e5e5;
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+    transform: translateX(0px);
+    transform: translateY(0px);
+  }
 }
 
 /* Tablet - PC low resolution */

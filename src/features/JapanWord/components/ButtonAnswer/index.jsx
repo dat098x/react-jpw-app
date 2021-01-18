@@ -27,6 +27,7 @@ function ButtonAnswer(props) {
   return (
     <button
       className="btn-answer"
+      onTouchStart=""
       style={{
         backgroundColor: backgroundColor,
         borderColor: borderColor,
