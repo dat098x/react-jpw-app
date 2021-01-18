@@ -14,7 +14,7 @@ function ListUnitsBox(props) {
       <div className="grid">
         <div className="row sm-gutter list-unit-item">
           {unitList.map((unit, index) => (
-            <div className="col l-3 m-3 list-unit-col">
+            <div className="col l-3 m-4 list-unit-col">
               <div
                 className={
                   index === currentUnitIndex
@@ -23,8 +23,8 @@ function ListUnitsBox(props) {
                 }
                 onClick={() => handleUnitClick(index)}
               >
-                <span className="day-text">Đề số</span>
-                <span className="day-number">{index + 1}</span>
+                <span className="day__text">Đề số</span>
+                <span className="day__number">{index + 1}</span>
               </div>
             </div>
           ))}

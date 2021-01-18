@@ -6,6 +6,7 @@ import "./Header.css";
 
 import "../../public/grid.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NavMobile from "../NavMobile";
 Header.propTypes = {};
 
 function Header(props) {
@@ -20,7 +21,8 @@ function Header(props) {
             <span>ez</span>
           </div>
           {/* Toggle Menu On Mobile & Tablet */}
-          <div className="toggle__menu hide-on-desktop">
+          <NavMobile />
+          {/* <div className="toggle__menu hide-on-desktop">
             <div className="toggle__menu__btn">
               <FontAwesomeIcon icon={["fas", "bars"]} />
               <div className="toggle__panel">
@@ -44,10 +46,10 @@ function Header(props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* End Toggle Menu */}
           <div className="nav__list__wrapper hide-on-mobile-tablet">
-            <ul className="nav__list">
+            <ul className="nav__list__pc">
               <li className="nav__item">
                 <NavLink
                   exact

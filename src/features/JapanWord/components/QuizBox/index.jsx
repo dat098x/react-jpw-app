@@ -44,10 +44,11 @@ function QuizBox(props) {
               word={currentQuestion.questionText}
               reading={currentQuestion.questionTextFuri}
               render={({ pairs }) => (
-                <h3 lang="ja">
+                <span className="question__text" lang="ja">
                   {pairs.map(([furigana, text], index) => (
                     <ReactFuri.Pair key={index}>
-                      {text === currentQuestion.keyword ? (
+                      {text === currentQuestion.keyword ||
+                      text === currentQuestion.behindKey ? (
                         <>
                           <span className="furi-text"> {furigana}</span>
                           <ReactFuri.Text
@@ -64,7 +65,7 @@ function QuizBox(props) {
                       )}
                     </ReactFuri.Pair>
                   ))}
-                </h3>
+                </span>
               )}
             />
           </div>

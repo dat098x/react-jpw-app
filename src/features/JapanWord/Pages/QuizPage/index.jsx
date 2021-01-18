@@ -219,7 +219,7 @@ function QuizPage(props) {
       {!currentUnit || isFetching ? (
         <div> Loading...</div>
       ) : (
-        <div className="row">
+        <div className="row sm-gutter">
           <div className="col l-3 m-3 c-12">
             <ListQuestionBox
               timer={timer}

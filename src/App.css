@@ -1,18 +1,15 @@
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-
   touch-action: manipulation;
-}
-.quiz-page::-webkit-scrollbar {
-  display: none;
-}
-::-webkit-scrollbar {
-  display: none;
 }
 
 body {
-  overflow: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .quiz-page {
@@ -263,9 +260,14 @@ body {
   user-select: none;
 }
 
-.question-section .question-text {
-  font-size: 20px;
+.question__text {
+  font-weight: 600;
+  padding: 0 8px;
+}
+
+.question__text .furi-text {
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .answer-section {
@@ -384,3 +386,87 @@ body {
 }
 
 /*End Quiz Box*/
+
+/*List Unit Box */
+.list-test-box {
+  border-radius: 1rem;
+  padding: 40px 10px 20px 10px;
+  background-color: white;
+  border: 1px solid #e6e5e5;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+
+  position: relative;
+}
+
+.unit-name {
+  position: absolute;
+
+  top: 0%;
+  padding: 5px 10px;
+
+  transform: translateY(-50%);
+
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  background-color: white;
+  border: 1px solid #e6e5e5;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.15);
+}
+.list-unit-item {
+}
+.list-unit-col {
+}
+
+.list-day-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin-bottom: 10px;
+
+  width: 58px;
+
+  border-radius: 0.5rem;
+  background-color: white;
+  border: 1px solid #e6e5e5;
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.15);
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.1 ease-in;
+}
+
+.list-day-item:active {
+  transform: translate3d(2px, 2px, 0);
+  box-shadow: none;
+}
+
+.day__text {
+  margin: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.day__number {
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  padding-bottom: 5px;
+  color: #d82222;
+}
+
+.list-day-item:hover {
+  background-color: #efefef;
+}
+
+.list-day-item.list-day-item--current {
+  background-color: #ffd89d;
+  border: 1px solid #f0c78a;
+}
+
+/*End List Unit Box*/

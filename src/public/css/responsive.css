@@ -19,6 +19,34 @@
   .hide-on-tablet {
     display: none;
   }
+
+  .nav__btn {
+    right: 0%;
+  }
+
+  .list-question {
+    justify-content: space-around;
+  }
+
+  .quiz-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .list-day-item {
+    width: 45px;
+    height: 45px;
+  }
+
+  .day__text {
+    margin: 0px 0px;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+  .question__text .furi-text {
+    font-weight: 500;
+    font-size: 0.7rem;
+  }
 }
 /* Mobile */
 @media (max-width: 740px) {
@@ -53,6 +81,16 @@
   }
   .answer-section {
     padding-top: 10px;
+  }
+
+  .question__text > span > span {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+
+  .question__text .furi-text {
+    font-weight: 500;
+    font-size: 0.5rem;
   }
   /* End-Quiz */
 }

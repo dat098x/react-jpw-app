@@ -48,6 +48,7 @@ function ListQuestionBox(props) {
         {!startQuiz ? (
           <button className="btn-begin" onClick={() => handleResetQuiz()}>
             Bắt đầu
+            <div className="ripple"></div>
           </button>
         ) : (
           <>

@@ -5,10 +5,11 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
+import "./public/css/base.css";
 import "./App.css";
 import "./public/grid.css";
+import "./components/NavMobile/NavMobile.css";
 import "./public/css/responsive.css";
-import "./public/css/base.css";
 
 library.add(fas);
 
