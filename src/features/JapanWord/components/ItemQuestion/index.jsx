@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import CorrectLogo from "../../../../public/images/check.svg";
-import InCorrectLogo from "../../../../public/images/cross.svg";
 import CircleLogo from "../../../../public/images/circle.svg";
+import InCorrectLogo from "../../../../public/images/cross.svg";
 
 ItemQuestion.propTypes = {};
 

@@ -1,9 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ItemQuestion from "../ItemQuestion";
-
-import "./ListQuestionBox.css";
 import Timer from "../Timer";
+import "./ListQuestionBox.css";
 
 ListQuestionBox.propTypes = {};
 
@@ -22,8 +20,6 @@ function ListQuestionBox(props) {
   } = props;
 
   const questions = currentUnit.questions;
-
-  const TIMER_START_VALUE = 450;
 
   return (
     <div className="list-question-box">

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
 ButtonAnswer.propTypes = {};
 
@@ -26,8 +25,9 @@ function ButtonAnswer(props) {
 
   return (
     <button
-      className="btn-answer"
-      onTouchStart=""
+      className={
+        isSelectedAnswer ? "btn__answer btn__answer--selected" : "btn__answer"
+      }
       style={{
         backgroundColor: backgroundColor,
         borderColor: borderColor,

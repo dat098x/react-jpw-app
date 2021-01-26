@@ -7,7 +7,7 @@ MainPage.propTypes = {};
 function MainPage(props) {
   return (
     <div className="japanword-app">
-      <div>MainPage Pages</div>
+      <div></div>
     </div>
   );
 }

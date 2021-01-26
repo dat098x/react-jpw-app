@@ -1,0 +1,40 @@
+.unit__week {
+  cursor: pointer;
+}
+
+.unit__week:hover {
+  background-color: #efefef;
+}
+
+.unit__week__icon {
+  margin-left: 8px;
+}
+.unit__select {
+  position: absolute;
+
+  padding: 10px 0;
+  left: 0px;
+  bottom: 0;
+  transform: translateY(105%);
+
+  width: 100%;
+
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  background-color: white;
+  border: 1px solid #e6e5e5;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.15);
+
+  cursor: pointer;
+}
+
+.unit__option {
+  width: 100%;
+  cursor: pointer;
+}
+
+.unit__option:hover {
+  text-decoration: underline;
+}

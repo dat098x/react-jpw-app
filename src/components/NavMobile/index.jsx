@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 NavMobile.propTypes = {};
 

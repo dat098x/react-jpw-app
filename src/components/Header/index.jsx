@@ -1,12 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
-
+import "../../public/grid.css";
+import NavMobile from "../NavMobile";
 import "./Header.css";
 
-import "../../public/grid.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NavMobile from "../NavMobile";
 Header.propTypes = {};
 
 function Header(props) {
@@ -19,34 +16,17 @@ function Header(props) {
             <span>J</span>
             <span>apan</span>
             <span>ez</span>
+            <NavLink
+              exact
+              className="nav__link__logo"
+              to={{
+                pathname: "/japanword/main",
+              }}
+            ></NavLink>
           </div>
           {/* Toggle Menu On Mobile & Tablet */}
           <NavMobile />
-          {/* <div className="toggle__menu hide-on-desktop">
-            <div className="toggle__menu__btn">
-              <FontAwesomeIcon icon={["fas", "bars"]} />
-              <div className="toggle__panel">
-                <div className="toggle__panel__items">
-                  <span className="toggle__panel__title">N4</span>
-                  <span className="toggle__panel__link">
-                    {" "}
-                    <NavLink
-                      exact
-                      className="sub__nav__link"
-                      to={{
-                        pathname: "/japanword/quiz",
-                        url: "/testbook/1/unit",
-                        name: "500 câu N45",
-                      }}
-                      activeClassName="sub__nav__link--active"
-                    >
-                      500 câu N45
-                    </NavLink>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div> */}
+
           {/* End Toggle Menu */}
           <div className="nav__list__wrapper hide-on-mobile-tablet">
             <ul className="nav__list__pc">
@@ -68,8 +48,10 @@ function Header(props) {
                   exact
                   className="nav__link"
                   to={{
-                    pathname: "/japanword/quiz",
-                    url: "/testbook/1/unit",
+                    pathname: "/japanword/books/500-cau-n45",
+                    url: "/500-n45/query?week=week1",
+                    bookName: "500 câu N45",
+                    weekOfBook: "Tuần 1",
                   }}
                   activeClassName="nav__link--active"
                 >
@@ -82,27 +64,13 @@ function Header(props) {
                         exact
                         className="sub__nav__link"
                         to={{
-                          pathname: "/japanword/quiz",
-                          url: "/testbook/1/unit",
-                          name: "500 câu N45",
+                          pathname: "/japanword/books/500-cau-n45",
+                          url: "/500-n45/query?week=week1",
+                          bookName: "500 câu N45",
                         }}
                         activeClassName="sub__nav__link--active"
                       >
                         500 câu N45
-                      </NavLink>
-                    </li>
-                    <li className="test-panel-item">
-                      <NavLink
-                        exact
-                        className="sub__nav__link"
-                        to={{
-                          pathname: "/japanword/quiz",
-                          url: "/testbook/2/unit",
-                          name: "500 câu N3",
-                        }}
-                        activeClassName="sub__nav__link--active"
-                      >
-                        500 câu N3
                       </NavLink>
                     </li>
                   </ul>

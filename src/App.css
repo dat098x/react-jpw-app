@@ -235,7 +235,7 @@ body::-webkit-scrollbar {
 .quiz-box:hover .prev-btn {
   opacity: 1;
 }
-.quiz-box .btn-answer {
+.quiz-box .btn__answer {
   margin: 10px 0;
 }
 .question-section {
@@ -281,7 +281,7 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
-.btn-answer {
+.btn__answer {
   width: 90%;
   height: 50px;
   padding: 5px;
@@ -300,15 +300,19 @@ body::-webkit-scrollbar {
   transition: all 0.1s ease-in;
 }
 
-.btn-answer:active {
+.btn__answer:active {
   color: white;
   box-shadow: none;
   transform: translateX(2px);
   transform: translateY(2px);
 }
 
-.btn-answer:hover {
+.btn__answer:hover {
   filter: brightness(95%);
+}
+
+.btn__answer--selected {
+  background-color: #ef9572;
 }
 
 .next-btn,
@@ -404,10 +408,27 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
-.unit-name {
+.unit__name {
   position: absolute;
 
   top: 0%;
+  padding: 5px 10px;
+
+  transform: translateY(-50%);
+
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  background-color: white;
+  border: 1px solid #e6e5e5;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.15);
+}
+
+.unit__week {
+  position: absolute;
+  top: 0;
+  right: 10%;
   padding: 5px 10px;
 
   transform: translateY(-50%);

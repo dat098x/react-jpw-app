@@ -15,8 +15,10 @@ function QuizBox(props) {
     score,
     currentUnit,
     historyAnswer,
+
     currentQuestionIndex,
     revealAnswers,
+
     handleAnswerOptionClick,
     handleNextButton,
     handlePrevButton,
@@ -50,7 +52,7 @@ function QuizBox(props) {
                       {text === currentQuestion.keyword ||
                       text === currentQuestion.behindKey ? (
                         <>
-                          <span className="furi-text"> {furigana}</span>
+                          <span className="furi-text"> </span>
                           <ReactFuri.Text
                             style={{ textDecoration: "underline" }}
                           >
@@ -79,7 +81,7 @@ function QuizBox(props) {
             <div className="grid">
               <div className="row">
                 {currentQuestion.answerOptions.map((answerOption, index) => (
-                  <div className="l-6 m-6 c-6">
+                  <div key={index} className="l-6 m-6 c-6">
                     <ButtonAnswer
                       key={`answerOption-${index}`}
                       answerOption={answerOption}
